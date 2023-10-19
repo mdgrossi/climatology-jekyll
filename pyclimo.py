@@ -46,7 +46,7 @@ class Data:
         """
         
         self.name = stationname
-        self.dirname = self._camel(stationname)
+        self.dirname = self.camel(stationname)
         self.id = stationid
         self.unit_system = units.lower()
         self.tz = timezone.lower()
@@ -80,13 +80,12 @@ class Data:
         
             # Download all data and save to file
             self.download_data(start_date=None, end_date=None)
-            self.data.to_csv(os.path.join(self.outdir,
-                                          'observational_data_record.csv.gz'),
-                            compression='infer')
+            outFile = os.path.join(self.outdir,
+                                   'observational_data_record.csv.gz')
+            self.data.to_csv(outFile, compression='infer')
             if self.verbose:
                 print("Observational data written to file "\
-                      f"'{os.path.join(self.outdir,
-                                       'observational_data_record.csv')}'.")
+                      f"'{outFile}'.")
 
             # Store units
             self.unit_options = dict({
@@ -383,7 +382,7 @@ class Data:
         dtdt = pd.to_datetime(datestr)
         return dt.datetime.strftime(dtdt, '%Y%m%d')
     
-    def _camel(self, text):
+    def camel(self, text):
         """Convert to camel case"""
         s = text.replace(',','').replace("-", " ").replace("_", " ")
         s = s.split()
@@ -551,14 +550,14 @@ class Data:
         var = series.name
 
         # Remove days with >hr_threshold hours of missing data
-        df_dayFlagged = self._set_dayflag(series,#[:],
+        df_dayFlagged = self._set_dayflag(series[:],
                                           threshold_hrs=hr_threshold)
         dfss = df_dayFlagged.loc[df_dayFlagged[f'{var}_DayFlag'],:]
 
         # Remove months with >day_threshold days of missing data
         df_monFlagged = self._set_monthflag(dfss[var],
                                             threshold_days=day_threshold)
-        dfss = df_monFlagged.loc[df_monFlagged[f'{var}_MonthFlag'],:]#.copy()
+        dfss = df_monFlagged.loc[df_monFlagged[f'{var}_MonthFlag'],:].copy()
         
         # Add Year Day
         dfss = self._DOY(dfss)

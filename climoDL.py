@@ -9,6 +9,9 @@
 # oceanic, for the specified station. If historical data already exists
 # locally, it is updated with the most recently available observations.
 #
+# TO EXECUTE:
+# python climoDL.py -s "Virginia Key, FL" -i "8723214" -u "english" -t "lst" -d "MHHW" --hr 3 --day 2 
+#
 # =============================================================================
 
 import matplotlib.pyplot as plt
@@ -33,7 +36,7 @@ def parse_args():
     parser.add_argument('-s', '--station', metavar='station', type=str,
                         help='Desired name of station. Used for saving data.',
                         default=None)
-    parser.add_argument('-i', '--id', metavar='stationid', type=float,
+    parser.add_argument('-i', '--id', metavar='stationid', type=str,
                         help='Tide station number from which to retrieve data.',
                         default=None)
     parser.add_argument('-o', '--outdir', metavar='outdir', type=str,
@@ -41,19 +44,19 @@ def parse_args():
                         default=None)
     parser.add_argument('-u', '--units', metavar='units', type=str,
                       help='Data units, either "metric" or "english".',
-                      default="english")
+                      default='english')
     parser.add_argument('-t', '--timezone', metavar='timezone', type=str,
                       help='Timezone, either "gmt", "lst", or "lst_ldt".',
-                      type="lst", default=0.5)
+                      default='lst')
     parser.add_argument('-d', '--datum', metavar='datum', type=str,
                         help='Tidal datum for water level data. Options: '+
                              '"STND", "MHHW", "MHW", "MTL", "MSL", "MLW", '+
                              '"MLLW", "NAVD"',
                         default='MHHW')
-    parser.add_argument('-h', '--hrthresh', metavar='hr_threshold', type=int,
+    parser.add_argument('--hr', metavar='hr_threshold', type=int,
                         help='Max number of hours of data that can be missing.',
                         default=3)
-    parser.add_argument('-d', '--daythresh', metavar='day_threshold', type=int,
+    parser.add_argument('--day', metavar='day_threshold', type=int,
                         help='Max number of days of data that can be missing.',
                         default=2)
     parser.add_argument('-r', '--redownload', action='store_true',
@@ -371,9 +374,9 @@ def main():
 
     # Download data
     data = Data(stationname=args.station, stationid=args.id, units=args.units,
-                timezone=args.timezome, datum=args.datum, outdir=args.outdir,
-                hr_threshold=args.hr_threshold,
-                day_threshold=args.day_threshold,
+                timezone=args.timezone, datum=args.datum, outdir=args.outdir,
+                hr_threshold=args.hr,
+                day_threshold=args.day,
                 verbose=args.verbose)
     data.update_data()
     data.update_stats()
@@ -385,24 +388,28 @@ def main():
         os.makedir(plotDir)
     for var in vars:
         # Daily climatology
-        dayfig = daily_climo(data, var=var,
+        dayfig = daily_climo(data.get_daily_stats_table(),
+                    var=var,
                     station=data.get_station(),
                     stationid=data.get_stationid(),
                     first_time=data.filtered_data[var].dropna(axis=0).index.min(),
                     last_time=data.filtered_data[var].dropna(axis=0).index.max())
-        fname = 'figure-{}-{}-daily.html'.format(data.get_station().lower(),
-                                                 var.lower().replace(' ', ''))
+        fname = 'figure-{}-{}-daily.html'.format(
+                    data.camel(data.get_station()).lower(),
+                    var.lower().replace(' ', ''))
         pio.write_html(dayfig, file=os.path.join(plotDir, fname),
                        auto_open=True)
 
         # Monthly climatology
-        monfig = monthly_climo(data, var=var,
+        monfig = monthly_climo(data.get_monthly_stats_table(),
+                    var=var,
                     station=data.get_station(),
                     stationid=data.get_stationid(),
                     first_time=data.filtered_data[var].dropna(axis=0).index.min(),
                     last_time=data.filtered_data[var].dropna(axis=0).index.max())
-        fname = 'figure-{}-{}-monthly.html'.format(data.get_station().lower(),
-                                                   var.lower().replace(' ', ''))
+        fname = 'figure-{}-{}-monthly.html'\
+                    .format(data.camel(data.get_station()).lower(),
+                            var.lower().replace(' ', ''))
         pio.write_html(monfig, file=os.path.join(plotDir, fname),
                        auto_open=True)
 
