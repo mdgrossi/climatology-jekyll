@@ -81,7 +81,8 @@ class Data:
             # Download all data and save to file
             self.download_data(start_date=None, end_date=None)
             self.data.to_csv(os.path.join(self.outdir,
-                                          'observational_data_record.csv'))
+                                          'observational_data_record.csv.gz'),
+                            compression='infer')
             if self.verbose:
                 print("Observational data written to file "\
                       f"'{os.path.join(self.outdir,
@@ -153,9 +154,10 @@ class Data:
             if self.verbose:
                 print('Loading historical data from file')
             self.data = pd.read_csv(
-                os.path.join(self.outdir, 'observational_data_record.csv'),
+                os.path.join(self.outdir, 'observational_data_record.csv.gz'),
                 index_col=f'time_{self.tz}',
-                parse_dates=True)
+                parse_dates=True,
+                compression='infer')
             
             # Load daily statistics from file
             if self.verbose:
@@ -274,12 +276,11 @@ class Data:
         
         # If no 'start_date' is passed, pick up from the last observation time
         if not start_date:
-            start_date = self._format_date(self.data.index.max() + 
-                                           pd.Timedelta(minutes=6))
+            start_date = self._format_date(self.data.index.max())
             
-        # If no 'end_date' is passed, download through current date
+        # If no 'end_date' is passed, download through end of current date
         if not end_date:
-            end_date = self._format_date(pd.to_datetime('today'))
+            end_date = self._format_date(pd.to_datetime('today') + pd.Timedelta(days=1))
         
         # Air temperature
         if 'Air Temperature' in self.variables:
@@ -308,29 +309,25 @@ class Data:
 
         # Merge into single dataframe
         data = pd.concat(datasets, axis=1)
-        print(len(self.data.index.intersection(data.index)))
-        print(len(data.index))
-        if len(self.data.index.intersection(data.index)) == len(data.index):
+        if sum(~data.index.isin(self.data.index)) == 0:
             print('No new data available.')
         else:
             data.index.name = f'time_{self.tz}'
             data.columns = [i for i in self.variables]
-            data = pd.concat([self.data, data], axis=0)
+            data = pd.concat([self.data,
+                              data[data.index.isin(self.data.index) == False]],
+                             axis=0)
             self.data = data
-            self.filtered_data = {
-                var:self._filter_data(
-                    self.data[var],
-                    hr_threshold=self.hr_threshold,
-                    day_threshold=self.day_threshold).sort_values(['YearDay']) \
-                for var in self.variables}
-            self.data.to_csv(os.path.join(self.outdir,
-                                          'observational_data_record.csv'))
+            self.filtered_data = {var:self._filter_data(self.data[var],
+                                                        hr_threshold=self.hr_threshold,
+                                                        day_threshold=self.day_threshold).sort_values(['YearDay']) \
+                                 for var in self.variables}
+            self.data.to_csv(os.path.join(self.outdir, 'observational_data_record.csv.gz'),
+                             compression='infer')
             if self.verbose:
                 print("Updated observational data written to file "\
-                      f"'{os.path.join(self.outdir,
-                                       'observational_data_record.csv')}'.")
-                print("Done! (Don't forget to run Data.update_stats() to "\
-                      "update statistics.)")
+                      f"'{os.path.join(self.outdir, 'observational_data_record.csv')}'.")
+                print("Done! (Don't forget to run Data.update_stats() to update statistics.)")
     
     def update_stats(self):    
         """Calculate new statistics and update if any changes"""
@@ -363,7 +360,7 @@ class Data:
                 print('NEW RECORD')
                 self._compare(self.monthly_stats_dict, _new_monthly_stats)
                 print('*'*10)
-            self.stats_dict = _new_monthly_stats
+            self.monthly_stats_dict = _new_monthly_stats
             # Write to file
             statsOutFile = os.path.join(self.outdir, 'statistics-monthly.json')
             with open(statsOutFile, 'w') as fp:
@@ -372,7 +369,7 @@ class Data:
                 print(f"\nUpdated daily observational statistics written to '{statsOutFile}'")
         else:
             if self.verbose:
-                print("No new daily records set.")
+                print("No new monthly records set.")
 
     def _ordered(self, obj):
         if isinstance(obj, dict):
@@ -985,28 +982,32 @@ class Data:
             _tables[var] = out
         return _tables
 
-    def _report(self, result, newval):
+    def _report(self, record, variable, ondate, values, years):
         """Print new records"""
-        variable, record, ondate, _ = result[6:].split("']['")
-        oldrecord = newval['old_value']
-        newrecord = newval['new_value']
+        oldRecord = values['old_value']
+        oldYear = years['old_value']
+        newRecord = values['new_value']        
         units = self.units[variable]
-        print(f"{record.capitalize()} {variable.lower()} set on {ondate}:\n\t"\
-              f"{newrecord} {units} (previously {oldrecord} {units})")        
-
+        print(f"{record.capitalize()} {variable.lower()} set {ondate}:\n\t"\
+              f"{newRecord} {units} (previously {oldRecord} {units} in {oldYear})")
+        
     def _compare(self, d1, d2):
         """Compare dictionaries excluding daily highs, lows, and averages,
-        since these will always change with updated data
-        """
+        since these will always change with updated data"""
         exclude = [f"root['{v}']['{e}']" \
-                   for e in ['Daily Average', 'Average High',
-                             'Average Low', 'Number of Years'] \
+                   for e in ['Daily Average', 'Monthly Average',
+                             'Average High', 'Average Low',
+                             'Number of Years'] \
                    for v in self.variables]
         deltas = DeepDiff(d1, d2, exclude_paths=exclude)
         # Print any new records
         if deltas:
-            for k,v in deltas['values_changed'].items():
-                self._report(result=k, newval=v)
+            keylist = list(deltas['values_changed'].keys())
+            for i in np.arange(0, len(keylist), 2):
+                variable, record, ondate, _ = keylist[i][6:].split("']['")
+                self._report(record, variable, ondate,
+                             values=deltas['values_changed'][keylist[i]],
+                             years=deltas['values_changed'][keylist[i+1]])
     
     def get_daily_stats(self, var=None):
         """Return the daily statistics dictionary"""
