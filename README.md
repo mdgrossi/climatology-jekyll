@@ -1,2 +1,1 @@
-# climatology
-Local atmospheric and oceanic climatology
+{% include figure-virginiakeyfl-airtemperature-daily.html %}
