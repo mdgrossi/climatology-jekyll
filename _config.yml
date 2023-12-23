@@ -14,7 +14,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 lang: en-US
-title: Climatology
+title: "Matt's Miscellany"
 email:
 description: "Atmospheric and oceanic climatology derived from NOAA CO-OPS weather and tide data"
 baseurl: "/climatology" # the optional subpath of your site, e.g. "/blog"
