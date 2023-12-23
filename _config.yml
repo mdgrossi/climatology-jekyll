@@ -98,4 +98,4 @@ defaults:
       type: stations
     values:
       layout: post
-      read_time: true
+      read_time: false
