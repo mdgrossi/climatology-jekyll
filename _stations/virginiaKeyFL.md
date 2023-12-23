@@ -1,5 +1,5 @@
 ---
-layout: post
+title: "Climatology for Virginia Key, Florida"
 ---
 
 # Climatology of Virginia Key, Florida
