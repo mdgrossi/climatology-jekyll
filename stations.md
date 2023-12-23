@@ -1,5 +1,5 @@
 ---
-title: Locations
+title: Stations
 layout: collection
 permalink: /stations/
 collection: stations
