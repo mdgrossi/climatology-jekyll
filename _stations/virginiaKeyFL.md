@@ -6,12 +6,10 @@ image:
   caption: "University of Miami's R/V Walton Smith docked at the Rosenstiel School of Marine, Atmospheric, and Earth Science on Virginia Key"
 ---
 
-Text to describe figure
-
 {% include figure-virginiakeyfl-airtemperature-daily.html %}
 
-Text to describe figure
+{% include figure-virginiakeyfl-watertemperature-daily.html %}
 
-Text to describe figure
+{% include figure-virginiakeyfl-airtemperature-monthly.html %}
 
-Text to describe figure
+{% include figure-virginiakeyfl-watertemperature-monthly.html %}
