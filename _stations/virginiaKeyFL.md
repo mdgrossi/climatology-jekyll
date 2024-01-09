@@ -8,6 +8,8 @@ image:
 
 Text to describe figure
 
+{% include figure-virginiakeyfl-airtemperature-daily.html %}
+
 Text to describe figure
 
 Text to describe figure

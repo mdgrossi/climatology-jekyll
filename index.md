@@ -10,5 +10,5 @@ introduction: |
 actions:
   - label: "Locations"
     icon: arrow-right
-    url: "https://mdgrossi.github.io/climatology/locations"
+    url: "https://mdgrossi.github.io/climatology/stations"
 ---
