@@ -8,7 +8,7 @@ image:
 
 Text to describe figure
 
-{% include ../../tree/main/climatology/_includes/figure-virginiakeyfl-airtemperature-daily.html %}
+[]{https://github.com/mdgrossi/climatology/blob/main/_includes/figure-virginiakeyfl-airtemperature-daily.html}
 
 Text to describe figure
 
