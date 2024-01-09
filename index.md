@@ -1,7 +1,6 @@
 ---
 layout: home
 paginate: true
-alt_title: "Climatology"
 sub_title: "Subtitle"
 image: 
 introduction: |
