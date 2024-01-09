@@ -12,6 +12,8 @@ Text to describe figure
 
 Text to describe figure
 
+{% include figure-virginiakeyfl-watertemperature-daily.html %}
+
 Text to describe figure
 
 Text to describe figure
