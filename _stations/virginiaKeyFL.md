@@ -1,11 +1,11 @@
 ---
 title: "Virginia Key, Florida"
-subtitle: "Test"
 image:
   path: /assets/images/vkfl-cropped.jpg
   thumbnail: /assets/images/vkfl-400x300.jpg
   caption: "University of Miami's R/V Walton Smith docked at the Rosenstiel School of Marine, Atmospheric, and Earth Science on Virginia Key"
 ---
+## NOAA CO-OPS Site 8723214
 
 <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d42461.70157812699!2d-80.17255246551831!3d25.73753395804339!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1704939462365!5m2!1sen!2sus" align="right" width="300" height="225" style="border:0; padding-left: 30px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
@@ -13,11 +13,9 @@ image:
 
 ### Air Temperature
 
-{% include figure-virginiakeyfl-airtemperature-daily.html %} 
+![](figure-virginiakeyfl-airtemperature-daily.html)  
 
 <br/><br/>  
-
-{% include figure-virginiakeyfl-airtemperature-monthly.html %}  
 
 ![Monthly air temperature climatology (F)](figure-virginiakeyfl-airtemperature-monthly.html)
 
@@ -25,8 +23,8 @@ image:
 
 ## Water Temperature
 
-{% include figure-virginiakeyfl-watertemperature-daily.html %}  
+![](figure-virginiakeyfl-watertemperature-daily.html)
 
 <br/><br/>  
 
-{% include figure-virginiakeyfl-watertemperature-monthly.html %}  
+![](figure-virginiakeyfl-watertemperature-monthly.html)
