@@ -27,4 +27,5 @@ image:
 
 <br/><br/>  
 
-{% include figure-virginiakeyfl-watertemperature-monthly.html %)
+{% include figure-virginiakeyfl-watertemperature-monthly.html %}
+
