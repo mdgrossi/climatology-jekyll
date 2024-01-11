@@ -14,6 +14,7 @@ image:
 <br/><br/>  
 
 ## Air Temperature
+Temperatures are in degrees Fahrenheit (&deg;F). Hourly observations are available from <date> to <date> and 6-minute observations from <date> to <date>.
 
 {% include figure-virginiakeyfl-airtemperature-daily.html %}
 
@@ -24,6 +25,7 @@ image:
 <br/><br/>  
 
 ## Water Temperature
+Temperatures are in degrees Fahrenheit (&deg;F). Hourly observations are available from <date> to <date> and 6-minute observations from <date> to <date>.
 
 {% include figure-virginiakeyfl-watertemperature-daily.html %}
 
