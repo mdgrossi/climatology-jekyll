@@ -13,7 +13,7 @@ image:
 
 ### Air Temperature
 
-#### ![](/_includes/figure-virginiakeyfl-airtemperature-daily.html)  
+#### ![](../_includes/figure-virginiakeyfl-airtemperature-daily.html)  
 
 <br/><br/>  
 
