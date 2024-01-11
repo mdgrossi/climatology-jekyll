@@ -14,6 +14,17 @@
 #
 # =============================================================================
 
+# TO IMPLEMENT:
+#
+# 1. Change plot background color to white
+# 2. Match plot text color and, if possible, font to Jekyll theme
+# 3. Change color scheme: colorblind-friendly red for highs, blue for lows
+# 4. Redo title and subtitle. Ex:
+#    Daily air temperature climatology, 02/01/1994-01/10/2024
+#    As of \textbf{Day, Month, DD, YYYY}, \textbf{{n} records} have been set in 2024. (A total of {n} records were set last year.)
+# 5. Replace legend with series labels directly on plot
+
+
 import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 import plotly.express as px
