@@ -13,11 +13,11 @@ image:
 
 ### Air Temperature
 
-![](figure-virginiakeyfl-airtemperature-daily.html)  
+#### ![](figure-virginiakeyfl-airtemperature-daily.html)  
 
 <br/><br/>  
 
-![Monthly air temperature climatology (F)](figure-virginiakeyfl-airtemperature-monthly.html)
+# ![Monthly air temperature climatology (F)](figure-virginiakeyfl-airtemperature-monthly.html)
 
 <br/><br/>  
 
