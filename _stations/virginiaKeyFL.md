@@ -13,18 +13,18 @@ image:
 
 ### Air Temperature
 
-{% include figure-virginiakeyfl-airtemperature-daily.html }
+{% include figure-virginiakeyfl-airtemperature-daily.html %}
 
 <br/><br/>  
 
-{ % include figure-virginiakeyfl-airtemperature-monthly.html }
+{% include figure-virginiakeyfl-airtemperature-monthly.html %}
 
 <br/><br/>  
 
 ## Water Temperature
 
-![](figure-virginiakeyfl-watertemperature-daily.html)
+{% include figure-virginiakeyfl-watertemperature-daily.html %}
 
 <br/><br/>  
 
-![](figure-virginiakeyfl-watertemperature-monthly.html)
+{% include figure-virginiakeyfl-watertemperature-monthly.html %)
