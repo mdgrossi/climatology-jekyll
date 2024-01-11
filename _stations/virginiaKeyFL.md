@@ -17,7 +17,7 @@ image:
 
 <br/><br/>  
 
-### ![Monthly air temperature climatology (F)](_includes/figure-virginiakeyfl-airtemperature-monthly.html)
+### ![Monthly air temperature climatology (F)](../_includes/figure-virginiakeyfl-airtemperature-monthly.html)
 
 <br/><br/>  
 
