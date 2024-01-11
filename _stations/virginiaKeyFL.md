@@ -11,7 +11,6 @@ image:
 
 [Virginia Key](https://en.wikipedia.org/wiki/Virginia_Key){:target="_blank" rel="noopener"} is a small barrier island in southeast Florida. It is located in Biscayne Bay, east of Miami, south of Miami Beach, and north of Key Biscayne. Its tropical monsoon climate is characterized by hot, humid summers and warm, dry winters. [NOAA](https://www.noaa.gov){:target="_blank" rel="noopener"} [CO-OPS Site 8723214](https://tidesandcurrents.noaa.gov/stationhome.html?id=8723214){:target="_blank" rel="noopener"} is installed on a pier at the [University of Miami](https://welcome.miami.edu){:target="_blank" rel="noopener"} [Rosenstiel School of Marine, Atmospheric, and Earth Science](https://earth.miami.edu){:target="_blank" rel="noopener"}, pictured above. Observational data are available from February 1994 to the present.
 
-<br/><br/>  
 
 ## Air Temperature
 Temperatures are in degrees Fahrenheit (&deg;F). Hourly air temperature observations are available from MM/DD/YYYY to MM/DD/YYYY and 6-minute observations from MM/DD/YYYY to MM/DD/YYYY.
