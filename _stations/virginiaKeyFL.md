@@ -1,5 +1,6 @@
 ---
 title: "Virginia Key, Florida"
+subtitle: "Test"
 image:
   path: /assets/images/vkfl-cropped.jpg
   thumbnail: /assets/images/vkfl-400x300.jpg
@@ -18,7 +19,7 @@ image:
 
 {% include figure-virginiakeyfl-airtemperature-monthly.html %}  
 
-# ![Monthly air temperature](figure-virginiakeyfl-airtemperature-monthly.html)
+![Monthly air temperature climatology (F)](figure-virginiakeyfl-airtemperature-monthly.html)
 
 <br/><br/>  
 
