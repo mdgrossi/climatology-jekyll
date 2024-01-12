@@ -15,9 +15,7 @@ image:
 ## Air Temperature
 Temperatures are in degrees Fahrenheit (&deg;F). Hourly air temperature observations are available from MM/DD/YYYY to MM/DD/YYYY and 6-minute observations from MM/DD/YYYY to MM/DD/YYYY.
 
-{% include figure-virginiakeyfl-airtemperature-daily.html
-  height="auto"
-  width="100%" %}
+{% include figure-virginiakeyfl-airtemperature-daily.html %}
 
 <br/><br/>  
 
