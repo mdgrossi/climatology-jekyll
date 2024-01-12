@@ -4,6 +4,6 @@ layout: collection
 permalink: /stations/
 collection: stations
 entries_layout: grid
-excerpt: false
+show_excerpts: false
 sort_by: title
 ---
