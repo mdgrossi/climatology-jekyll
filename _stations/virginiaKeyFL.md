@@ -17,8 +17,7 @@ Temperatures are in degrees Fahrenheit (&deg;F). Hourly air temperature observat
 
 {% include figure-virginiakeyfl-airtemperature-daily.html
   height="auto"
-  width="100%"
-  object-fit="contain" %}
+  width="100%" %}
 
 <br/><br/>  
 
