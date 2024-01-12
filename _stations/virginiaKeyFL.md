@@ -1,7 +1,6 @@
 ---
 title: "Virginia Key, Florida"
 sub_title: "NOAA CO-OPS Site 8723214"
-excerpt: false
 image:
   <!-- path: /assets/images/vkfl-cropped.jpg -->
   thumbnail: /assets/images/vkfl-400x300.jpg
