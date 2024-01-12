@@ -14,6 +14,8 @@
   {% endif %}
 {% endif %}
 
-{%- for post in entries -%}
-  {% include entry.html %}
-{%- endfor -%}
+{% if site.show_excerpts %}
+  {%- for post in entries -%}
+    {% include entry.html %}
+  {%- endfor -%}
+{% endif %}
