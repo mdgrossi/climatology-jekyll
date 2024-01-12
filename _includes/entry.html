@@ -25,7 +25,7 @@
     </ul>
   </footer>
   <div class="entry-excerpt">
-    {% if site.show_excerpts %}
+    {% if collection.show_excerpts %}
       {% if post.excerpt %}
         {{ post.excerpt | markdownify }}
         <p><a href="{{ post.url | relative_url }}" class="more-link">{{ site.data.theme.t.read_more | default: 'Read More' }} <span class="icon icon--arrow-right">{% include icon-arrow-right.svg %}</span></a></p>
