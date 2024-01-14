@@ -16,7 +16,7 @@ actions:
 ---
 
 ### Data
-<details style="font-size:13px;">
+<details style="font-size:14px;">
     <summary>
       What are these data?
     </summary>
@@ -33,10 +33,10 @@ actions:
     </ul>
   Water level sensors are calibrated and the observations verified. None of the other variables are verified and should be used with caution.
     </p>
-</details>
-
+</details>  
+  
 ### Methodology
-<details style="font-size:13px;">
+<details style="font-size:14px;">
   <summary>
     How are these statistics calculated?
   </summary>
