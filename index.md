@@ -12,7 +12,7 @@ actions:
     icon: arrow-right
     url: "https://mdgrossi.github.io/climatology/stations"
   - label: "Methodology"
-	url: "[](#data)"
+    url: "[](#data)"
 ---
 
 ### Data
