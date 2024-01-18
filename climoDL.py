@@ -9,7 +9,7 @@
 # oceanic, for the specified station. If historical data already exists
 # locally, it is updated with the most recently available observations.
 #
-# TO EXECUTE:
+# To execute for a new station:
 # python climoDL.py -s "Virginia Key, FL" -i "8723214" -u "english" -t "lst" -d "MHHW" --hr 3 --day 2 
 #
 # =============================================================================
@@ -224,7 +224,7 @@ def daily_climo(data, var, station, stationid, first_time, last_time,
     )
     # Plot settings
     fig.update_layout(
-        template='plotly_dark',
+        template='plotly_white',
         # paper_bgcolor='rgba(0,0,0,0)',
         # plot_bgcolor='rgba(0,0,0,0)',
         height=600, width=1000,
@@ -349,7 +349,7 @@ def monthly_climo(data, var, station, stationid, first_time, last_time,
     )
     # Plot settings
     fig.update_layout(
-        template='plotly_dark',
+        template='plotly_white',
         # paper_bgcolor='rgba(0,0,0,0)',
         # plot_bgcolor='rgba(0,0,0,0)',
         height=600, width=1000,
