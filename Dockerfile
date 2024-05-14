@@ -1,9 +1,14 @@
-FROM jupyter/base-notebook:python-3.10.4
+FROM jupyter/base-notebook:python-3.11
 
 WORKDIR /home/climatology/
 
-RUN pip install --upgrade pip
-
 COPY requirements.txt .
 
-RUN pip install -r requirements.txt
+USER root
+
+RUN apt-get update && apt-get install -y --no-install-recommends pkg-config gcc python3-dev libhdf5-dev
+
+USER 1000
+
+RUN pip install --upgrade pip setuptools wheel && \
+  pip install -r requirements.txt
