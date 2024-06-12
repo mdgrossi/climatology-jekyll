@@ -1,0 +1,8 @@
+datum: MHHW
+tz: lst
+unit_system: english
+day_threshold: 2
+hr_threshold: 3
+variables: 
+- Air Temperature
+- Water Temperature
