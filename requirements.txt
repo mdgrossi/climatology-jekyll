@@ -5,4 +5,4 @@ plotly==5.22.0
 scipy==1.13.1
 xarray[io]==2024.3.0
 noaa_coops==0.3.2
-dash==2.17.0
+bokeh==3.4.2
